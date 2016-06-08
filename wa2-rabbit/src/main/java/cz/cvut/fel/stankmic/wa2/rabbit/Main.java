@@ -18,7 +18,7 @@ public class Main implements Runnable {
     public static final boolean AUTO_ACK = false;
     public static final boolean DURABLE = false;
     public static final int PREFETCH_COUNT = 1;
-    public static final int DUMMY_JOB_SLEEP = 60_000;
+    public static final int DUMMY_JOB_SLEEP = 10_000;
 
     public static void main(String[] args) throws InterruptedException {
         Thread t = startMainThread();

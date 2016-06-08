@@ -60,6 +60,11 @@ public class ActorService {
     }
 
     @Transactional
+    public Actor getFullProfile(int actorId) {
+        return actorDao.getFullProfile(actorId);
+    }
+
+    @Transactional
     public Actor loadWithAll(int actorId) {
         return actorDao.getWithAll(actorId);
     }

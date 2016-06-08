@@ -38,6 +38,7 @@ public class AsyncController extends BaseController {
             throw new FileNotFoundException();
         }
         return getModelAndView("async/view", session, "Unicorn")
+                .addObject("resultId", resultId)
                 .addObject("result", asyncResult.getResult());
     }
 

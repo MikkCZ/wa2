@@ -10,9 +10,29 @@
 </header>
 <main>
     <h1>${actor.getFirstName()} ${actor.getLastName()}</h1>
-    <a href="/actor-rating/actor/${actor.getId()}">Actor ratings (${actorRatings})</a>
+    <a href="/actor-rating/actor/${actor.getId()}">Actor ratings (${actorRatings.size()})</a>
     <br>
-    <a href="/actor/theatres/${actor.getId()}">Theatres (${theatres})</a>
+    <table>
+        <c:forEach items="${actorRatings}" var="actorRating">
+            <tr>
+                <td>${actorRating.getRatedBy().getEmail()} rated ${actor.getFirstName()} ${actor.getLastName()}:</td>
+                <td>${actorRating.getComment()}</td>
+            </tr>
+        </c:forEach>
+    </table>
+
+    <br>
+
+    <a href="/actor/theatres/${actor.getId()}">Theatres (${theatres.size()})</a>
+    <br>
+    <table>
+        <c:forEach items="${theatres}" var="theatre">
+            <tr>
+                <td>${theatre.getName()}</td>
+            </tr>
+        </c:forEach>
+    </table>
+
     <c:if test="${isLoggedIn == true}">
         <form method="post" action="/actor/${actor.getId()}">
             <input type="text" name="firstname" id="firstname" required="required">
@@ -27,7 +47,7 @@
     </c:if>
 </main>
 <footer>
-    <jsp:include page="../includes/foot.jsp" />s
+    <jsp:include page="../includes/foot.jsp" />
 </footer>
 </body>
 </html>

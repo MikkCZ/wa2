@@ -21,13 +21,13 @@ public class ActorRating implements Serializable {
 
     @Getter
     @Setter
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = User.class)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = User.class)
     @JoinColumn(name = "ratedBy", nullable = false)
     private User ratedBy;
 
     @Getter
     @Setter
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Actor.class)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Actor.class)
     @JoinColumn(name = "actor", nullable = false)
     private Actor actor;
 

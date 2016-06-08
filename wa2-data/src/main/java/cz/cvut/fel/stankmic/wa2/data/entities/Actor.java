@@ -28,7 +28,7 @@ public class Actor implements Serializable {
     @Getter
     @Setter
     @Column(name = "lastname")
-    private String lastName;
+    public String lastName;
 
     @Getter
     @Setter
@@ -48,6 +48,15 @@ public class Actor implements Serializable {
     public Actor(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Actor(Actor a, Set<Staging> s, Set<Theatre> t, Set<ActorRating> ar) {
+        this.id = a.id;
+        this.firstName = a.firstName;
+        this.lastName = a.lastName;
+        this.stagings = s;
+        this. theatres = t;
+        this.actorRatings = ar;
     }
 
 }

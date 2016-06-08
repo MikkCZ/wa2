@@ -21,5 +21,26 @@
 <footer>
     <jsp:include page="../includes/foot.jsp" />
 </footer>
+
+<script>
+    var done = false;
+
+    function doPoll() {
+        if(!done) {
+            var xhr = new XMLHttpRequest();
+            xhr.addEventListener("readystatechange", function() {
+                if(xhr.status == 200) {
+                    document.querySelector("h1").innerHTML = JSON.parse(xhr.responseText)["result"];
+                    done = true;
+                }
+            });
+            xhr.open("GET", "/asyncrest/${resultId}", true);
+            xhr.send();
+        }
+    }
+
+    var interval = setInterval(doPoll, 5000);
+</script>
+
 </body>
 </html>

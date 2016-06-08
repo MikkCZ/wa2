@@ -38,14 +38,15 @@ public class ActorController extends BaseController {
             HttpSession session,
             @PathVariable("actorId") int actorId
     ) throws FileNotFoundException {
-        Actor actor = actorService.loadWithAll(actorId);
+        Actor actor = actorService.getFullProfile(actorId);
         if(actor == null) {
             throw new FileNotFoundException();
         }
         return getModelAndView("actor/actor-view", session, actor.getFirstName()+" "+actor.getLastName())
                 .addObject("actor", actor)
-                .addObject("actorRatings", actor.getActorRatings().size())
-                .addObject("theatres", actor.getTheatres().size());
+                .addObject("stagings", actor.getStagings())
+                .addObject("theatres", actor.getTheatres())
+                .addObject("actorRatings", actor.getActorRatings());
     }
 
     @RequestMapping(value = "{actorId}", method = RequestMethod.POST)
@@ -67,7 +68,7 @@ public class ActorController extends BaseController {
             HttpSession session,
             @PathVariable("actorId") int actorId
     ) throws FileNotFoundException {
-        Actor actor = actorService.loadWithTheatres(actorId);
+        Actor actor = actorService.getFullProfile(actorId);
         if(actor == null) {
             throw new FileNotFoundException();
         }
